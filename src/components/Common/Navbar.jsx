@@ -38,6 +38,7 @@ function Navbar() {
 
   const [subLinks, setSubLinks] = useState([])
   const [loading, setLoading] = useState(false)
+  const [isNavbarVisible, setIsNavbarVisible] = useState(false)
 
   useEffect(() => {
     ;(async () => {
@@ -58,6 +59,10 @@ function Navbar() {
     return matchPath({ path: route }, location.pathname)
   }
 
+  const toggleNavbar = () => {
+    setIsNavbarVisible((prev) => !prev)
+  }
+
   return (
     <div
       className={`flex h-14 items-center justify-center border-b-[1px] border-b-richblack-700 ${
@@ -70,8 +75,12 @@ function Navbar() {
           <img src={logo} alt="Logo" width={160} height={32} loading="lazy" />
         </Link>
         {/* Navigation links */}
-        <nav className="hidden md:block">
-          <ul className="flex gap-x-6 text-richblack-25">
+        <nav
+          className={`${
+            isNavbarVisible ? "block" : "hidden"
+          } md:block`}
+        >
+          <ul className="flex flex-col md:flex-row gap-y-4 md:gap-x-6 text-richblack-25">
             {NavbarLinks.map((link, index) => (
               <li key={index}>
                 {link.title === "Catalog" ? (
@@ -159,7 +168,10 @@ function Navbar() {
           )}
           {token !== null && <ProfileDropdown />}
         </div>
-        <button className="mr-4 md:hidden">
+        <button
+          className="hamburger mr-4 md:hidden"
+          onClick={toggleNavbar}
+        >
           <AiOutlineMenu fontSize={24} fill="#AFB2BF" />
         </button>
       </div>

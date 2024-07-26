@@ -14,7 +14,7 @@ const mailSender = async (email, title, body) => {
     let info = await transporter.sendMail({
       from: `"Studynotion" <${process.env.MAIL_USER}>`, // sender address
       to: `${email}`, // list of receivers
-      subject: `${title}`, // Subject line
+      subject: `${title}`, // Subject lines
       html: `${body}`, // html body
     })
     console.log(info.response)

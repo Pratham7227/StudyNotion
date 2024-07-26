@@ -1,5 +1,6 @@
-const BASE_URL = "http://localhost:4000/api/v1"
 
+// const BASE_URL ='http://localhost:4000/api/v1'
+const BASE_URL="https://studynotion-backend-vpiq.onrender.com"
 // AUTH ENDPOINTS
 export const endpoints = {
   SENDOTP_API: BASE_URL + "/auth/sendotp",
